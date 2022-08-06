@@ -1,0 +1,2 @@
+# forex
+Get forex info from [[https://www.google.com/finance/][google finance]] on emacs
