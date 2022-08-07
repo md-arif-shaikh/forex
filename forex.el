@@ -63,8 +63,8 @@
 (defun forex-rate (from to)
   "Get forex rate from FROM to TO."
   (interactive
-   (let ((from (completing-read "FROM: " forex-currency-list))
-	 (to (completing-read "TO :" forex-currency-list)))
+   (let* ((from (completing-read "FROM: " forex-currency-list))
+	  (to (completing-read "TO :" (remove from forex-currency-list))))
      (list from to)))
   (let ((forex-data (forex--get-forex-data from to)))
     (message "EXCHANGE RATE %s/%s = %s on %s"
@@ -76,9 +76,9 @@
 (defun forex-convert (amount from to)
   "Convert AMOUNT from FROM to TO."
   (interactive
-   (let ((amount (read-number "AMOUNT: "))
-	 (from (completing-read "FROM: " forex-currency-list))
-	 (to (completing-read "TO :" forex-currency-list)))
+   (let* ((amount (read-number "AMOUNT: "))
+	  (from (completing-read "FROM: " forex-currency-list))
+	 (to (completing-read "TO :" (remove from forex-currency-list))))
      (list amount from to)))
   (let* ((forex-data (forex--get-forex-data from to))
 	 (rate (cdr (assoc "rate" forex-data)))
