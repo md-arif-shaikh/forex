@@ -60,6 +60,7 @@
 	`(("rate" . ,rate)
 	  ("date" . ,date))))))
 
+;;;###autoload
 (defun forex-rate (from to)
   "Get forex rate from FROM to TO."
   (interactive
@@ -73,6 +74,7 @@
 	     (cdr (assoc "rate" forex-data))
 	     (cdr (assoc "date" forex-data)))))
 
+;;;###autoload
 (defun forex-convert (amount from to)
   "Convert AMOUNT from FROM to TO."
   (interactive
