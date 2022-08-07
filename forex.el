@@ -78,12 +78,12 @@
   (interactive
    (let* ((amount (read-number "AMOUNT: "))
 	  (from (completing-read "FROM: " forex-currency-list))
-	 (to (completing-read "TO :" (remove from forex-currency-list))))
+	  (to (completing-read "TO :" (remove from forex-currency-list))))
      (list amount from to)))
   (let* ((forex-data (forex--get-forex-data from to))
 	 (rate (cdr (assoc "rate" forex-data)))
 	 (converted-amount (* amount rate)))
-    (message "%s %s = %s %s. %s"
+    (message "%s %s = %.2f %s. %s"
 	     amount
 	     (s-upcase from)
 	     converted-amount

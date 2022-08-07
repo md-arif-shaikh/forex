@@ -1,2 +1,13 @@
 # forex
-Get forex info from [[https://www.google.com/finance/][google finance]] on emacs
+Get forex info from [[https://www.google.com/finance/][google finance]] on [[https://www.gnu.org/software/emacs/][Emacs]]. Convert from one currency to another using forex rate from [[https://www.google.com/finance/?hl=bn][google finance]].
+
+# Installation
+## Using [[https://github.com/jwiegley/use-package][use-package]] and [[https://github.com/radian-software/straight.el][straight]]
+#+BEGIN_SRC emacs-lisp
+  (use-package forex
+    :straight (forex :type git :host github :repo "md-arif-shaikh/forex"))
+#+END_SRC
+
+# Usage
+~M-x forex-convert~ to convert an amount from one currency to another.
+#+html: <div> <img src="./screenshots/forex-convert.png"></div>
