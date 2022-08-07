@@ -30,6 +30,11 @@
 (require 'dom)
 (require 's)
 
+(defgroup forex nil
+  "A basic forex rate, currency converter."
+  :group 'finance
+  :link '(url-link :tag "Homepage" "https://github.com/md-arif-shaikh/forex"))
+
 (defvar forex--google-class-alist
   '(("rate" . "YMlKec fxKbKc")
     ("date" . "ygUjEc"))
@@ -37,7 +42,9 @@
 
 (defcustom forex-currency-list
   '("KRW" "INR" "USD" "EUR")
-  "List of currencies.")
+  "List of currencies."
+  :type 'list
+  :group 'forex)
 
 (defun forex--get-forex-item (item dom)
   "Get ITEM in DOM."
@@ -60,11 +67,11 @@
 	 (to (completing-read "TO :" forex-currency-list)))
      (list from to)))
   (let ((forex-data (forex--get-forex-data from to)))
-    (message (format "EXCHANGE RATE %s/%s = %s on %s"
-		     (s-upcase from)
-		     (s-upcase to)
-		     (cdr (assoc "rate" forex-data))
-		     (cdr (assoc "date" forex-data))))))
+    (message "EXCHANGE RATE %s/%s = %s on %s"
+	     (s-upcase from)
+	     (s-upcase to)
+	     (cdr (assoc "rate" forex-data))
+	     (cdr (assoc "date" forex-data)))))
 
 (defun forex-convert (amount from to)
   "Convert AMOUNT from FROM to TO."
@@ -76,12 +83,12 @@
   (let* ((forex-data (forex--get-forex-data from to))
 	 (rate (cdr (assoc "rate" forex-data)))
 	 (converted-amount (* amount rate)))
-    (message (format "%s %s = %s %s. %s"
-		     amount
-		     (s-upcase from)
-		     converted-amount
-		     (s-upcase to)
-		     (forex-rate from to)))))
+    (message "%s %s = %s %s. %s"
+	     amount
+	     (s-upcase from)
+	     converted-amount
+	     (s-upcase to)
+	     (forex-rate from to))))
 
 (provide 'forex)
 ;;; forex.el ends here
