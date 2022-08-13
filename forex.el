@@ -23,8 +23,13 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Minima EMACS package to get forex data from google finance.
+;;; Minimal EMACS package to get forex data from google finance.
 ;;; Get forex rate, convert currency from one to another.
+;;; Usage:
+;;; M-x forex-rate:    To get exchange rate between currencies
+;;; M-x forex-convert: To convert an amount in one currency to another
+;;; Customization:
+;;; forex-currency-list: A List CODES for frequently used currencies.
 
 ;;; Code:
 (require 'dom)
